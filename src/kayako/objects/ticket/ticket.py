@@ -103,7 +103,7 @@ class Ticket(KayakoObject):
 		watchers = [dict(staffid=watcher_node.get('staffid'), name=watcher_node.get('name')) for watcher_node in ticket_tree.findall('watcher')]
 		notes = [TicketNote(api, **TicketNote._parse_ticket_note(ticket_note_tree, ticketid)) for ticket_note_tree in ticket_tree.findall('note') if ticket_note_tree.get('type') == 'ticket']
 		timetracks = [TicketTimeTrack(api, **TicketTimeTrack._parse_ticket_time_track(ticket_time_track_tree, ticketid)) for ticket_time_track_tree in ticket_tree.findall('note') if
-		              ticket_note_tree.get('type') == 'timetrack']
+		              ticket_time_track_tree.get('type') == 'timetrack']
 
 		posts = []
 		posts_node = ticket_tree.find('posts')
